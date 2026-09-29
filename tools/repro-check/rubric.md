@@ -1,0 +1,24 @@
+# Rubric: is this reproduction package ready to post?
+
+Every check reads the package against the issue it belongs to. Use references/evidence-guide.md to locate each check's evidence. Grade the proof itself; length, formatting, and confidence of tone are never evidence for a pass.
+
+## Checks
+
+| Check | Evidence | Pass condition | Weight |
+|---|---|---|---|
+| env-recorded | The repro report's environment line (Environment family) | The report names the OS or platform AND the version of the software under test, plus any runtime, driver, backend, or build setting the issue or its thread says matters to the failure. A package with no environment record fails, even when its artifacts look right. | required |
+| target-faithful | Issue body and thread highlights (trigger conditions, target version) set against the report's environment and steps (Environment, Steps families) | The report exercises the issue's trigger: same command shape, syntax, input, and flags the issue or maintainers name as required, on the version the issue targets or a newer one. Any deviation in version, input, or configuration is stated in the report. Fails on a silently different input, a modified expression or syntax, a skipped required flag, or an older version presented without comment. | required |
+| steps-rerunnable | The report's steps and any inputs they depend on (Steps family) | A stranger starting from a clean install could re-run every step from the text alone: exact commands or code, the input file contents or a precise description of them, and the settings changed. Fails if any step depends on private code, an unshared config, or a vague instruction such as "set up the project". | required |
+| behavior-shown | Output excerpts, logs, tracebacks, or captured results in the report, compared with the symptom the issue describes (Behavior shown family) | The shown artifact displays the issue's specific behavior: same error type or message, same wrong output, same exit behavior. An honest cannot-reproduce passes when it shows the real output of a genuine attempt at the issue's trigger. Fails when there is no artifact, or when the artifact shows an adjacent behavior (a different error, a graceful validation message where the issue reports a crash, a program simply running). | required |
+| claims-backed | Every assertion in the claim comment and report (reproduced, verified, root cause, applies to X) set against the artifacts actually shown (Honesty family) | Each claim of confirmation, cause, scope, or certainty is supported by an artifact in the package, and the report's narration matches what its own artifacts show. A cannot-reproduce is stated plainly, names what differed, and does not claim more. Fails on asserted root causes with no shown evidence, "guaranteed" or "verified" backed by nothing, generalizing to versions or platforms not tested, or narration that contradicts the artifact. | required |
+| claim-specific | The candidate claim comment set against the issue (Comms family) | The claim comment names something specific to this issue, states a concrete next step the writer will actually take, and makes no promise it cannot keep (no guaranteed fix dates, no demand to reserve or assign). Fails on a +1 or me-too, interchangeable assign-me boilerplate, or a comment with no intent. | required |
+| ai-policy-met | The repo-facts contribution policy line set against both comments (Comms family) | Treat every package as AI-assisted work. If the repo's stated policy requires disclosing AI use in issues or comments (for example "all AI usage in any form must be disclosed"), the claim comment or report must disclose the tool and the extent of the help. Passes when the repo states no AI policy, when the policy requires disclosure only in pull requests, or when the policy only asks for human understanding or human-written comments and the comments read as the writer's own specific words. | required |
+| expected-vs-actual | The report's expected and actual statements (Behavior shown family) | Expected and actual are both stated as observations tied to the shown artifacts. | preferred |
+| control-run | The report's steps and artifacts (Steps family) | The report includes a control run (the same steps with the trigger removed) whose output differs as the issue predicts. | preferred |
+| template-asks | Repo facts bug-report template line set against the report (Comms family) | The report supplies the fields the repo's bug-report template asks for. | preferred |
+
+## Verdict rule
+
+accept when every required check grades pass. reject when any required check grades fail or unclear. Preferred checks are reported but never change the verdict.
+
+In live mode with a claim-only draft, grade only claim-specific and ai-policy-met; report the other required checks as unclear with evidence "not yet applicable: claim-only draft" and leave them out of the verdict, per SKILL.md.
