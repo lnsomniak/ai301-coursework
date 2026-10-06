@@ -26,4 +26,4 @@ Not in scope: the seeded unused `sections` accumulator in `parse_review_output`,
 
 ## Deviations
 
-Nothing changed; the plan held. The branch ix/69-json-array-fallback adds the list branch to _parse_json_output with item_<index> sections, removes the H-02 xfail marker, and tightens 	est_json_array_fallback to assert the two sections, touching only the two files the plan named. The dict path is byte-for-byte the same, and PR #79 had not merged when I built, so there was nothing to rebase onto.
+Nothing changed; the plan held. The branch `fix/69-json-array-fallback` adds the list branch to `_parse_json_output` with `item_<index>` sections, removes the H-02 xfail marker, and tightens `test_json_array_fallback` to assert the two sections, touching only the two files the plan named. The dict path is byte-for-byte the same, and PR #79 had not merged when I built, so there was nothing to rebase onto.
