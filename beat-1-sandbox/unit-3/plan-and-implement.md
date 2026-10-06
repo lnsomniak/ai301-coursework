@@ -12,81 +12,13 @@ lnsomniak
 
 **Plan comment**
 
-https://github.com/codepath/pathreview-ai301-fa26-s3/issues/69#issuecomment-5900424892
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/69#issuecomment-6016812888
 
-## Reproduction Report
+I'm planning the fix for this from my reproduction above, where the array reaches `_parse_json_output` as a list and `.items()` raises at `output_parser.py:68`, while a JSON object parses fine.
 
-### Environment
+Plan: add a list branch to `_parse_json_output` that builds one `FeedbackSection` per item, named `item_<index>`, leaving the dict path untouched. Per the issue, I'll remove the H-02 xfail marker from `test_json_array_fallback` and tighten it to assert two sections carrying the two input strings. My test is my repro re-run: the `AttributeError` before, a passing test after, and the dict control still returning 2 sections.
 
-- OS: Windows 11 (build 26200)
-- Python: 3.11.9
-- pytest: 9.1.1
-- Repository: Tommy1070/pathreview-ai301-fa26-s3
-- Branch: main
-- Commit: `2f4e82f52efbcfcc57d65b3fa5348672163ca088`
-
-### Steps to Reproduce
-
-From the repository root, I installed the development dependencies:
-
-```powershell
-python -m pip install -e ".[dev]"
-```
-
-I then ran the existing regression test for issue #69 with the expected-failure marker disabled:
-
-```powershell
-python -m pytest .\tests\unit\test_output_parser.py::TestOutputParser::test_json_array_fallback -vv --runxfail
-```
-
-### Observed Behavior
-
-The test failed with the following traceback:
-
-```text
-tests\unit\test_output_parser.py::TestOutputParser::test_json_array_fallback FAILED
-
-________________________________ TestOutputParser.test_json_array_fallback ________________________________
-
-self = <tests.unit.test_output_parser.TestOutputParser object>
-
-    @pytest.mark.xfail(
-        strict=True,
-        reason="issue #69 (manifest H-02): output parser calls .items() on a JSON array fallback",
-    )
-    def test_json_array_fallback(self):
-        """Test handling of JSON array (not dict)."""
-        raw_output = json.dumps(["First feedback item", "Second feedback item"])
-
->       result = parse_review_output(raw_output)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-tests\unit\test_output_parser.py:149:
-rag\generator\output_parser.py:48: in parse_review_output
-    return _parse_json_output(data)
-
-data = ['First feedback item', 'Second feedback item']
-
-    def _parse_json_output(data: dict) -> list[FeedbackSection]:
-        sections = []
-
->       for key, value in data.items():
-                          ^^^^^^^^^^
-E       AttributeError: 'list' object has no attribute 'items'
-
-rag\generator\output_parser.py:68: AttributeError
-
-FAILED tests/unit/test_output_parser.py::TestOutputParser::test_json_array_fallback - AttributeError: 'list' object has no attribute 'items'
-1 failed in 0.52s
-```
-
-### Expected Behavior
-
-A valid top-level JSON array should be handled without crashing. The parser should return the array, wrap it in the existing result shape, or otherwise handle it explicitly.
-
-### Conclusion
-
-I reproduced issue #69 on Windows with Python 3.11.9 at commit `2f4e82f52efbcfcc57d65b3fa5348672163ca088`. When `parse_review_output()` receives a valid top-level JSON array, the parsed value reaches `_parse_json_output()` as a list. `_parse_json_output()` then calls `.items()` on that list, resulting in `AttributeError: 'list' object has no attribute 'items'`.
+PR #79 covers the same crash but also refactors the dict path into a helper and adds a branch for other types. I'm keeping my change to the list case only. A top-level JSON scalar hits the same `.items()` call, and I'll note it in my PR as a known gap rather than fold it in. The seeded unused accumulator in `parse_review_output` stays as it is.
 
 ---
 
