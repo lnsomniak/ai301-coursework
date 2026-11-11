@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: Weights download progress line floods non-terminal logs
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -8,10 +8,9 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
+**Student:** Sergio Hernandez
+**GitHub Username:** lnsomniak
+**Issue:** https://github.com/AllenCell/SubCellSeg/issues/5
 **Pull Request:** [GitHub PR link, once opened]
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -55,10 +54,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Ran my first real scan and lost a claim race by seven minutes**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I installed the issue-scout over my unit 1 skill, rewrote my fit profile around Python and React with Vite, and wrote three `gh` queries with a two per repo cap after test runs showed a few repos mass filing good first issues. The first scan pulled 180 unique issues, and my rubric accepted all five it graded, including a two-day-old JavaScript repo with no stars and an agent run task farm, which told me checks written for the Path Review sandbox are too lenient for open GitHub. My second pick, AllenCell/SubCellSeg#5, passed “Nobody already on it” at 11:03 PM and was closed by the maintainer’s own PR at 11:17, seven minutes before my claim went up. Next time I’d rank by most recent activity instead of fewest comments and re run the claim check right before claiming, since a scan’s read on who’s working an issue goes stale within minutes.
 
 **Unit 6: [one line on the tool work]**
 
