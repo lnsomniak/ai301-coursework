@@ -78,24 +78,18 @@ drafted, what you did with the draft.]
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
+I chose this issue because of a combination of its readability and apparent ease, alongside a search that felt like I was never going to find an issue I was confident in. My scout surfaced it as its second pick, but the same rubric that accepted it also waved through a two-day-old JavaScript repo with no stars and an agent-run task farm, so I came away trusting the scout's search more than its verdicts. Throughout this search for issues, I learned something new about myself. I've been developing for quite some time now, and yet I've always felt a little uneasy about public contributions since I've always been a perfectionist that eases himself through knowing that the work is mine to judge and mine only. This experience both taught me that I can do it, and should be doing it more often. Despite not actually having been able to submit my claim, the python bug was something that was fun to work through for a night.
+
+Claim comment: https://github.com/AllenCell/SubCellSeg/issues/5#issuecomment-6787853945
+
+Withdrawal comment: https://github.com/AllenCell/SubCellSeg/issues/5#issuecomment-6787943923
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- Tool: issue-scout, my scout, run once with `claude "issue-scout: run a scan"` using my three `gh` queries and ranking filters
+- What it produced: a scan of 180 unique issues narrowed to five graded candidates, all accepted; SubCellSeg#5 ranked second in fit order and passed all six checks, including “Nobody already on it,” at 11:03 PM
+- Difficulties: the rubric accepted an off-profile JavaScript repo and an agent-run task farm, and its claim check was stale by 11:17 PM, when the maintainer's own PR closed the issue
+- What changed: I'd rank by most recent activity instead of fewest comments and re run the claim check right before claiming
 
 ---
 
